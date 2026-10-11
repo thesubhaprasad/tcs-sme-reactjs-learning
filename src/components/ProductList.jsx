@@ -1,15 +1,17 @@
 import ProductCard from './ProductCard.jsx';
 
-// Each ProductList can display any supplied array, including an empty one.
-export default function ProductList({ products = [], showCategory = true }) {
-  // An early return chooses the fallback UI for an empty collection.
-  if (products.length === 0) return <p className="empty-state">No products to display.</p>;
-
+// The parent supplies a filtered array. The list only decides how to render it.
+export default function ProductList({ products = [], cart = [], showCategory = true, onAddToCart }) {
+  if (products.length === 0) return <p className="empty-state">No products match your filters.</p>;
   return (
     <div className="product-grid">
-      {/* key identifies each sibling. ProductCard reads the explicit product prop. */}
+      {/* some answers whether each product is already selected in the cart. */}
       {products.map(product => (
-        <ProductCard key={product.id} product={product} showCategory={showCategory} />
+        <ProductCard
+          key={product.id} product={product} showCategory={showCategory}
+          isInCart={cart.some(item => item.id === product.id)}
+          onAddToCart={onAddToCart}
+        />
       ))}
     </div>
   );

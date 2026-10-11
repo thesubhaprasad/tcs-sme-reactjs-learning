@@ -1,37 +1,41 @@
-import AssetCard from './components/AssetCard.jsx';
+import PageHeader from './components/PageHeader.jsx';
+import Section from './components/Section.jsx';
+import AssetSummary from './components/AssetSummary.jsx';
+import AssetList from './components/AssetList.jsx';
 import { assets } from './data/assets.js';
 
-// A React function component describes the screen using current data.
+// App composes small components and supplies their data through props.
 export default function App() {
-  const trainer = 'Subha Prasad';
-  // filter returns a new array containing assets that match this condition.
-  const availableAssets = assets.filter(asset => asset.status === 'Available');
+  // Day 2 uses source configuration. State and interactive inputs arrive on Day 3.
+  // Try Available, Assigned or All, then save the file and inspect the browser.
+  const selectedStatus = 'All';
+  const showLocation = true;
+  const visibleAssets = selectedStatus === 'All'
+    ? assets
+    : assets.filter(asset => asset.status === selectedStatus);
 
   return (
     <main className="page">
-      <header className="hero">
-        <p className="eyebrow">TCS SME TRAINING · DAY 01</p>
-        <h1>Our first React screen</h1>
-        <p>JavaScript data becomes a reusable asset dashboard.</p>
-        <p className="trainer">Trainer: {trainer} · 12 October 2026</p>
-      </header>
-      <section className="summary" aria-label="Asset summary">
-        {/* Expressions inside braces calculate the displayed counts. */}
-        <p><strong>{assets.length}</strong> total assets</p>
-        <p><strong>{availableAssets.length}</strong> available</p>
-      </section>
-      <section aria-labelledby="assets-heading">
-        <h2 id="assets-heading">Sample assets</h2>
-        <p>All data is fictional. Edit src/data/assets.js and watch this screen update.</p>
-        <div className="asset-grid">
-          {/* map converts each data object into a component. Stable IDs provide keys. */}
-          {assets.map(asset => <AssetCard key={asset.id} asset={asset} />)}
-        </div>
-      </section>
+      <PageHeader
+        title="Reusable components, one dashboard"
+        subtitle="Props connect data to components. Conditions choose what appears."
+        trainer="Subha Prasad"
+        date="13 October 2026"
+      />
+      <AssetSummary assets={assets} />
+      {/* Section receives both paragraphs and AssetList through children. */}
+      <Section title="Asset inventory" headingId="inventory-heading">
+        <p>Current source filter: <strong>{selectedStatus}</strong></p>
+        <AssetList assets={visibleAssets} showLocation={showLocation} />
+      </Section>
+      <Section title="Empty-list example" headingId="empty-heading">
+        <p>The same AssetList displays an alternative when its array has no items.</p>
+        <AssetList assets={[]} />
+      </Section>
       <aside className="exercise">
         <h2>Your turn</h2>
-        <p>Add an asset with a unique ID, then change its location and status.</p>
-        <p>Check the total and available counts. Explain which expression changed each one.</p>
+        <p>Change selectedStatus to Available and showLocation to false in App.jsx.</p>
+        <p>The summary uses all assets. The inventory uses the filtered list.</p>
       </aside>
     </main>
   );

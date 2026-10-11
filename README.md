@@ -1,104 +1,98 @@
-# ReactJS SME training — Day 1
+# ReactJS SME training — Day 2
 
-Trainer: **Subha Prasad**, TCS Assets Consultant (C3A), SME trainer.
-Session: **12 October 2026, 10:00–11:00 AM IST**, Microsoft Teams.
-Audience: JavaScript and React beginners.
+**Subha Prasad**, TCS Assets Consultant (C3A), SME trainer.
+**13 October 2026, 10:00–11:00 AM IST**, Microsoft Teams.
 
 ## Learning outcomes
 
-Read variables, objects, arrays and functions, explain `map` and `filter`, and render JavaScript data through a React component. Props and keys appear in the guided demo and receive deeper treatment on Day 2. No state, event handlers or API requests are required on Day 1.
+Extract reusable components, pass and read props, explain default values, compose nested JSX with `children`, choose conditional UI, and render lists with stable keys. This builds on the Day 1 branch. Day 2 changes configuration in source files. State and interactive event handling belong to Day 3.
 
 ## Setup
 
-Use an organisation-approved compatible Node.js version (Vite 7 requires Node 20.19+ or 22.12+). Clone the Day 1 branch, then install and run:
+Use an organisation-approved compatible Node.js version (Vite 7 requires Node 20.19+ or 22.12+).
 
 ```sh
-git clone --branch codex/day-one git@github.com:thesubhaprasad/tcs-sme-reactjs-learning.git
+git clone --branch tcs-sme-reactjs/day-two git@github.com:thesubhaprasad/tcs-sme-reactjs-learning.git
 cd tcs-sme-reactjs-learning
-```
-
-From this repository:
-
-```sh
 npm ci
 npm run dev
 ```
 
-Open the local URL printed by Vite. `npm ci` uses the committed lockfile. Stop the server with Ctrl+C.
+For an existing clean checkout, use `git switch tcs-sme-reactjs/day-two`. Open the local URL printed by Vite.
 
-## JavaScript lesson
-
-```sh
-npm run check:lessons
-```
-
-Read `src/lessons/javascript-basics.js` while comparing its console output. Predict each result before executing it.
-
-## Session plan
+## One-hour delivery plan
 
 | Time (IST) | Activity |
 | --- | --- |
-| 10:00–10:05 | Trainer introduction, topic index, learning outcomes |
-| 10:05–10:25 | JavaScript fundamentals with examples |
-| 10:25–10:45 | React concepts, project structure and JSX demo |
-| 10:45–10:55 | Guided hands-on |
+| 10:00–10:05 | Introduction, Day 1 recall, index |
+| 10:05–10:17 | Component extraction, imports, props and defaults |
+| 10:17–10:25 | children and conditional rendering |
+| 10:25–10:30 | Lists, keys and styling |
+| 10:30–10:45 | Guided project walkthrough |
+| 10:45–10:55 | Learner practice |
 | 10:55–11:00 | Quiz and recap |
 
-Detailed slides are a teaching reference. Move optional syntax explanations into post-class revision when learners need more time.
+Use slides as a reference, predict results before running examples, and keep extended default-value and key explanations for revision if learners need more practice. The trainer notes include slide timing and answers.
 
-## Files to explore
+## Project structure and data flow
 
-- `index.html`: root HTML element.
-- `src/main.jsx`: React entry and StrictMode.
-- `src/App.jsx`: page composition, array expressions and list rendering.
-- `src/components/AssetCard.jsx`: reusable component with a data prop.
-- `src/data/assets.js`: fictional asset objects.
-- `src/lessons/javascript-basics.js`: commented runnable JavaScript examples.
-- `src/styles.css`: commented styling.
-- `vite.config.js`: React JSX transform and Fast Refresh configuration.
-- `training/`: Day 1 PowerPoint and trainer notes.
+- `App.jsx` supplies source configuration and composes the page.
+- `PageHeader.jsx` reads title, subtitle, trainer and date props.
+- `AssetSummary.jsx` derives totals from all assets.
+- `Section.jsx` wraps nested JSX using `children`.
+- `AssetList.jsx` handles the empty branch and maps visible assets.
+- `AssetCard.jsx` reads one asset and the showLocation boolean.
+- `StatusBadge.jsx` chooses a status class and demonstrates a default prop.
+- `data/assets.js` contains four fictional asset objects.
+- `lessons/day-two-data.js` demonstrates filter, map, defaults and stable IDs.
+- `training/day-2/` contains the editable PPT and trainer notes.
+- `training/day-1/` preserves the Day 1 presentation and notes.
+
+The original screen shows **4 total, 2 available, 2 assigned**, four inventory cards, and a separate empty-list message.
 
 ## Guided hands-on
 
-1. Run the JavaScript lesson and explain the `map` result.
-2. Open `src/data/assets.js` and add a fourth asset with a unique ID.
-3. Change its name, location and status.
-4. Verify the total count increases to 4.
-5. Verify the available count matches the number of Available assets.
-6. Change the heading in `src/App.jsx`.
-7. Check the browser console for errors.
+1. Read the parent props in App and identify the receiving component.
+2. Trace the `asset` object from AssetList into AssetCard.
+3. Change `selectedStatus` to `Available` and save. The inventory now shows two cards, while the summary still describes all four assets.
+4. Change `showLocation` to `false`. Location paragraphs disappear.
+5. Change the inventory's AssetList prop to `assets={[]}`. Its empty message appears.
+6. Restore the original configuration.
+7. Add a fifth asset with a unique ID. Confirm counts match its status.
 
-Expected result: the new card appears, counts match the dataset, and the page updates without editing the AssetCard component.
+Expected result: the reusable components handle different data without duplicating their markup or mutating props. IDs remain attached to their assets even when you reorder the array.
 
-## Homework (20–30 minutes)
+## Practice and homework
 
-Add a `serialNumber` field to each asset and display it in AssetCard. Add an `Assigned` count using `filter`. Explain the original and copied objects in the JavaScript lesson.
+Live practice: add `serialNumber` to every asset and display it in AssetCard. Pass a new `showSerialNumber` boolean through App, AssetList and AssetCard. Verify true and false cases.
+
+After class: extract an AssetDetails component that receives category and location props. Compare missing, undefined and null values for a default prop.
 
 ## Quiz answers
 
-1. Reassign a variable: `let`.
-2. Transform every array item: `map`.
-3. Select matching items: `filter`.
-4. JSX braces contain a JavaScript expression.
-5. Component names begin with a capital letter.
+1. A parent passes data to a child through props.
+2. Default values apply to omitted or undefined props, not null.
+3. Nested JSX arrives through children.
+4. A stable key identifies an item among its siblings across updates.
+5. Use `count > 0 && ...` instead of `count && ...` to avoid rendering zero.
+6. Treat props as read-only. The parent supplies new values.
 
-## Verification
+## Checks
 
 ```sh
 npm run check:lessons
+npm run check:day-two
 npm run build
 npm run preview
 ```
 
-Preview serves the production build locally. This demo stores fictional data in source files and has no backend or persistence.
+Manual browser checks: original counts and four cards, Available filtering, location visibility, empty-list fallback, and no console errors. `preview` serves the production build locally.
 
-## Certification scope and references
+## References and scope
 
-This is foundation training. It does not define TCS E1 eligibility, official syllabus or assessment rules.
-
-- https://react.dev/learn
-- https://react.dev/learn/your-first-component
-- https://react.dev/learn/writing-markup-with-jsx
+- https://react.dev/learn/passing-props-to-a-component
+- https://react.dev/learn/importing-and-exporting-components
+- https://react.dev/learn/conditional-rendering
 - https://react.dev/learn/rendering-lists
-- https://vite.dev/guide/
-- https://developer.mozilla.org/en-US/docs/Web/JavaScript/Guide
+
+This is foundation training. TCS E1 official syllabus, assessment rules and eligibility govern certification. No backend, API loading or persistence is required for Day 2.

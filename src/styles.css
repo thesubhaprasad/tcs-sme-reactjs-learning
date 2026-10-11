@@ -21,3 +21,9 @@ h1 { font-size: clamp(32px, 5vw, 52px); margin: 16px 0; }
 .assigned { background: #fff1d5; color: #77521b; }
 /* The practice instructions remain part of the page, below the sample data. */
 .exercise { margin-top: 32px; border-left: 4px solid #0b8b91; padding: 4px 24px; }
+/* Day 2 sections use the same wrapper with different nested content. */
+.content-section { margin-top: 28px; }
+.allocation-note, .location { color: #536b7b; font-size: 14px; }
+.empty-state { padding: 20px; background: #e8eef5; border: 1px dashed #a6bbc9; border-radius: 12px; }
+/* Allow summary statistics to wrap instead of overflowing a narrow screen. */
+.summary { flex-wrap: wrap; }

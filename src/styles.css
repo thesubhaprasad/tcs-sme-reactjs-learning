@@ -12,18 +12,20 @@ h1 { font-size: clamp(32px, 5vw, 52px); margin: 16px 0; }
 .summary { display: flex; gap: 36px; padding: 20px 0; }
 .summary strong { color: #087f83; font-size: 32px; margin-right: 8px; }
 /* Auto-fit preserves readable cards on smaller screens. */
-.asset-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(240px, 1fr)); gap: 20px; margin-top: 24px; }
-.asset-card { padding: 24px; background: white; border: 1px solid #dbe4ec; border-radius: 16px; }
-.asset-id { color: #62798b; font-size: 13px; }
-.asset-card h3 { margin: 16px 0 10px; }
+.product-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(240px, 1fr)); gap: 20px; margin-top: 24px; }
+.product-card { padding: 24px; background: white; border: 1px solid #dbe4ec; border-radius: 16px; }
+.product-id { color: #62798b; font-size: 13px; }
+.product-card h3 { margin: 16px 0 10px; }
 .status { display: inline-block; padding: 6px 12px; border-radius: 20px; font-size: 14px; }
-.available { background: #daf2e9; color: #176144; }
-.assigned { background: #fff1d5; color: #77521b; }
+.in-stock { background: #daf2e9; color: #176144; }
+.out-of-stock { background: #fff1d5; color: #77521b; }
 /* The practice instructions remain part of the page, below the sample data. */
 .exercise { margin-top: 32px; border-left: 4px solid #0b8b91; padding: 4px 24px; }
 /* Day 2 sections use the same wrapper with different nested content. */
 .content-section { margin-top: 28px; }
-.allocation-note, .location { color: #536b7b; font-size: 14px; }
+.stock-note, .category { color: #536b7b; font-size: 14px; }
 .empty-state { padding: 20px; background: #e8eef5; border: 1px dashed #a6bbc9; border-radius: 12px; }
 /* Allow summary statistics to wrap instead of overflowing a narrow screen. */
 .summary { flex-wrap: wrap; }
+/* Prices remain visible when the optional category paragraph is hidden. */
+.price { font-size: 24px; font-weight: bold; color: #087f83; }

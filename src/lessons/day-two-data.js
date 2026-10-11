@@ -1,22 +1,21 @@
-// Run npm run check:day-two to predict and inspect the dashboard's data operations.
-import { assets } from '../data/assets.js';
+// Run npm run check:day-two to inspect the data operations used by the catalog.
+import { products } from '../data/products.js';
 
-// Filter first, then map: only available names appear in the resulting array.
-const available = assets.filter(asset => asset.status === 'Available');
-const availableNames = available.map(asset => asset.name);
-console.log('Total:', assets.length, 'Available:', available.length);
-console.log('Available names:', availableNames);
+// filter selects stock matches. map extracts the names of those products.
+const inStockProducts = products.filter(product => product.inStock);
+console.log('Total:', products.length, 'In stock:', inStockProducts.length);
+console.log('In-stock names:', inStockProducts.map(product => product.name));
 
-// A default function parameter follows the same JavaScript rule as default props.
-function labelStatus(status = 'Available') {
-  return status;
+// JavaScript defaults apply to missing and undefined values, but not false or null.
+function defaultStock(inStock = true) {
+  return inStock;
 }
-console.log('Missing:', labelStatus(), 'Undefined:', labelStatus(undefined));
-console.log('Null:', labelStatus(null));
+console.log('Missing:', defaultStock(), 'Undefined:', defaultStock(undefined));
+console.log('False:', defaultStock(false), 'Null:', defaultStock(null));
 
-// Reordering a copied array changes positions, while each item's ID stays fixed.
-const reordered = [...assets].reverse();
-console.log('Original IDs:', assets.map(asset => asset.id));
-console.log('Reordered IDs:', reordered.map(asset => asset.id));
+// A copy can be reordered without changing the original array or product IDs.
+const reordered = [...products].reverse();
+console.log('Original IDs:', products.map(product => product.id));
+console.log('Reordered IDs:', reordered.map(product => product.id));
 
-// Practice: derive assigned names and explain why a key should follow the item's ID.
+// Practice: derive the names of out-of-stock products without mutating props.

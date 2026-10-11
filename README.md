@@ -38,35 +38,35 @@ Use slides as a reference, predict results before running examples, and keep ext
 
 - `App.jsx` supplies source configuration and composes the page.
 - `PageHeader.jsx` reads title, subtitle, trainer and date props.
-- `AssetSummary.jsx` derives totals from all assets.
+- `ProductSummary.jsx` derives totals from all products.
 - `Section.jsx` wraps nested JSX using `children`.
-- `AssetList.jsx` handles the empty branch and maps visible assets.
-- `AssetCard.jsx` reads one asset and the showLocation boolean.
-- `StatusBadge.jsx` chooses a status class and demonstrates a default prop.
-- `data/assets.js` contains four fictional asset objects.
+- `ProductList.jsx` handles the empty branch and maps visible products.
+- `ProductCard.jsx` reads one product and the showCategory boolean.
+- `StockBadge.jsx` chooses a stock class and demonstrates a default prop.
+- `data/products.js` contains four fictional product objects.
 - `lessons/day-two-data.js` demonstrates filter, map, defaults and stable IDs.
 - `training/day-2/` contains the editable PPT and trainer notes.
 - `training/day-1/` preserves the Day 1 presentation and notes.
 
-The original screen shows **4 total, 2 available, 2 assigned**, four inventory cards, and a separate empty-list message.
+The original screen shows **4 total, 2 in stock, 2 out of stock**, four inventory cards, and a separate empty-list message.
 
 ## Guided hands-on
 
 1. Read the parent props in App and identify the receiving component.
-2. Trace the `asset` object from AssetList into AssetCard.
-3. Change `selectedStatus` to `Available` and save. The inventory now shows two cards, while the summary still describes all four assets.
-4. Change `showLocation` to `false`. Location paragraphs disappear.
-5. Change the inventory's AssetList prop to `assets={[]}`. Its empty message appears.
+2. Trace the `product` object from ProductList into ProductCard.
+3. Change `selectedStock` to `In stock` and save. The inventory now shows two cards, while the summary still describes all four products.
+4. Change `showCategory` to `false`. Category paragraphs disappear.
+5. Change the inventory's ProductList prop to `products={[]}`. Its empty message appears.
 6. Restore the original configuration.
-7. Add a fifth asset with a unique ID. Confirm counts match its status.
+7. Add a fifth product with a unique ID. Confirm counts match its inStock boolean.
 
-Expected result: the reusable components handle different data without duplicating their markup or mutating props. IDs remain attached to their assets even when you reorder the array.
+Expected result: the reusable components handle different data without duplicating their markup or mutating props. IDs remain attached to their products even when you reorder the array.
 
 ## Practice and homework
 
-Live practice: add `serialNumber` to every asset and display it in AssetCard. Pass a new `showSerialNumber` boolean through App, AssetList and AssetCard. Verify true and false cases.
+Live practice: add `brand` to every product and display it in ProductCard. Pass a new `showBrand` boolean through App, ProductList and ProductCard. Verify true and false cases.
 
-After class: extract an AssetDetails component that receives category and location props. Compare missing, undefined and null values for a default prop.
+After class: extract a ProductDetails component that receives category and price props. Compare missing, undefined and null values for a default prop.
 
 ## Quiz answers
 
@@ -86,7 +86,7 @@ npm run build
 npm run preview
 ```
 
-Manual browser checks: original counts and four cards, Available filtering, location visibility, empty-list fallback, and no console errors. `preview` serves the production build locally.
+Manual browser checks: original counts and four cards, In stock filtering, category visibility, empty-list fallback, and no console errors. `preview` serves the production build locally.
 
 ## References and scope
 
@@ -96,3 +96,11 @@ Manual browser checks: original counts and four cards, Available filtering, loca
 - https://react.dev/learn/rendering-lists
 
 This is foundation training. TCS E1 official syllabus, assessment rules and eligibility govern certification. No backend, API loading or persistence is required for Day 2.
+
+## Product Catalog data
+
+Each product has `id`, `name`, `price` (INR), `category` and a boolean `inStock`. The sample shop sells Notebook (₹80), Pen (₹20), Bag (₹500) and Bottle (₹250). All example data and prices are fictional.
+
+Use `selectedStock = "In stock"` or `"Out of stock"` to select a boolean filter; `"All"` displays all four products. Use `showCategory = false` to hide category paragraphs. The price stays visible. `StockBadge` receives `inStock`, with a default of `true`; an explicit `false` stays false.
+
+Day 2 sets Bottle to `inStock: false` so the four-item dataset demonstrates both stock states evenly. The Day 1 add-product exercise uses `inStock: true` for its separate expected-count example.

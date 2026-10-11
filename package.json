@@ -1,5 +1,5 @@
 {
-  "name": "tcs-sme-reactjs-day-three",
+  "name": "tcs-sme-reactjs-day-four",
   "private": true,
   "version": "1.0.0",
   "type": "module",
@@ -9,7 +9,8 @@
     "preview": "vite preview --host 127.0.0.1",
     "check:lessons": "node src/lessons/javascript-basics.js",
     "check:day-two": "node src/lessons/day-two-data.js",
-    "check:day-three": "node src/lessons/day-three-state.js"
+    "check:day-three": "node src/lessons/day-three-state.js",
+    "check:day-four": "node src/lessons/day-four-loading.js"
   },
   "dependencies": {
     "react": "^19.2.0",

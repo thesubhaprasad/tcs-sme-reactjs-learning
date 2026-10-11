@@ -52,3 +52,8 @@ input[type="checkbox"] { width: 18px; height: 18px; accent-color: #087f83; }
 .cart-list li { display: flex; gap: 16px; flex-wrap: wrap; align-items: center; justify-content: space-between; padding: 12px 0; border-bottom: 1px solid #dbe4ec; }
 .note-form { max-width: 640px; }
 .note-form button { margin-top: 16px; }
+
+/* Day 4 request messages stay readable on desktop and mobile. */
+.request-state { padding: 24px; margin-top: 28px; background: white; border: 1px solid #dbe4ec; border-radius: 12px; }
+.request-error { border-color: #be6a3d; }
+.request-error h2 { margin-top: 0; }

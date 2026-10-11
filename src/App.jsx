@@ -1,37 +1,37 @@
-import AssetCard from './components/AssetCard.jsx';
-import { assets } from './data/assets.js';
+import ProductCard from './components/ProductCard.jsx';
+import { products } from './data/products.js';
 
-// A React function component describes the screen using current data.
+// A React component describes the screen from the current JavaScript data.
 export default function App() {
   const trainer = 'Subha Prasad';
-  // filter returns a new array containing assets that match this condition.
-  const availableAssets = assets.filter(asset => asset.status === 'Available');
+  // filter selects products whose inStock boolean is true.
+  const inStockProducts = products.filter(product => product.inStock);
 
   return (
     <main className="page">
       <header className="hero">
         <p className="eyebrow">TCS SME TRAINING · DAY 01</p>
-        <h1>Our first React screen</h1>
-        <p>JavaScript data becomes a reusable asset dashboard.</p>
+        <h1>Our first Product Catalog</h1>
+        <p>A small shop example with names, prices and categories.</p>
         <p className="trainer">Trainer: {trainer} · 12 October 2026</p>
       </header>
-      <section className="summary" aria-label="Asset summary">
-        {/* Expressions inside braces calculate the displayed counts. */}
-        <p><strong>{assets.length}</strong> total assets</p>
-        <p><strong>{availableAssets.length}</strong> available</p>
+      <section className="summary" aria-label="Product summary">
+        {/* JSX braces evaluate the expressions that produce these counts. */}
+        <p><strong>{products.length}</strong> total products</p>
+        <p><strong>{inStockProducts.length}</strong> in stock</p>
       </section>
-      <section aria-labelledby="assets-heading">
-        <h2 id="assets-heading">Sample assets</h2>
-        <p>All data is fictional. Edit src/data/assets.js and watch this screen update.</p>
-        <div className="asset-grid">
-          {/* map converts each data object into a component. Stable IDs provide keys. */}
-          {assets.map(asset => <AssetCard key={asset.id} asset={asset} />)}
+      <section aria-labelledby="products-heading">
+        <h2 id="products-heading">Shop products</h2>
+        <p>Sample prices in INR. Edit src/data/products.js to update the catalog.</p>
+        <div className="product-grid">
+          {/* map returns one card per product. Its stable ID becomes React's key. */}
+          {products.map(product => <ProductCard key={product.id} product={product} />)}
         </div>
       </section>
       <aside className="exercise">
         <h2>Your turn</h2>
-        <p>Add an asset with a unique ID, then change its location and status.</p>
-        <p>Check the total and available counts. Explain which expression changed each one.</p>
+        <p>Add a Bottle for ₹250 with a unique ID, category and inStock value.</p>
+        <p>Check the displayed price and explain how the product count changes.</p>
       </aside>
     </main>
   );

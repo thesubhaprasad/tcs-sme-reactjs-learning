@@ -1,0 +1,4 @@
+# Dependencies and generated builds stay out of Git.
+node_modules/
+dist/
+.DS_Store

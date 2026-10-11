@@ -1,0 +1,23 @@
+/* Shared colours and spacing keep the page readable during screen sharing. */
+:root { font-family: Arial, sans-serif; color: #163047; background: #f3f6fa; font-synthesis: none; }
+* { box-sizing: border-box; }
+body { margin: 0; }
+.page { max-width: 1120px; margin: auto; padding: 40px 24px; }
+/* The hero introduces the training and the example application. */
+.hero { background: #143749; color: white; border-radius: 20px; padding: 40px; }
+.eyebrow { color: #92e8df; font-size: 13px; letter-spacing: 2px; }
+h1 { font-size: clamp(32px, 5vw, 52px); margin: 16px 0; }
+.trainer { opacity: .8; }
+/* Counts come from JavaScript expressions, while CSS controls appearance. */
+.summary { display: flex; gap: 36px; padding: 20px 0; }
+.summary strong { color: #087f83; font-size: 32px; margin-right: 8px; }
+/* Auto-fit preserves readable cards on smaller screens. */
+.asset-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(240px, 1fr)); gap: 20px; margin-top: 24px; }
+.asset-card { padding: 24px; background: white; border: 1px solid #dbe4ec; border-radius: 16px; }
+.asset-id { color: #62798b; font-size: 13px; }
+.asset-card h3 { margin: 16px 0 10px; }
+.status { display: inline-block; padding: 6px 12px; border-radius: 20px; font-size: 14px; }
+.available { background: #daf2e9; color: #176144; }
+.assigned { background: #fff1d5; color: #77521b; }
+/* The practice instructions remain part of the page, below the sample data. */
+.exercise { margin-top: 32px; border-left: 4px solid #0b8b91; padding: 4px 24px; }
